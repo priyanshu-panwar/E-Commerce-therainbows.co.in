@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Profile</h1>
+<h3><b> Name : {{ name }}</b></h3>
+<h3><b> Email : {{ email }}</b></h3>
+<h3> Order History</h3>
+{% if history is not None  %}
+    <table class="table table-striped">
+
+      <tbody class="cart-body">
+      {% for order in history %}
+        <tr class='cart-product'>
+
+            <p><b>Order ID : </b>{{ order.order_id }}</p>
+            <p><b>Contact : </b>{{ order.contact }}</p>
+            <p><b>Address : </b>{{ order.address }}</p>
+            <p><b>Details : </b>{{  order.details }}</p>
+            <p><b>Order Total : </b>{{ order.total }}</p><br>
+
+        </tr>
+      <hr>
+      {% endfor %}
+
+      </tbody>
+    </table>
+{% else %}
+<p class="lead"> No Order History</p>
+    <h5><a href="{% url 'shop:product_list' %}">Shop</a></h5>
+{% endif %}
+
+
+{% endblock %}
